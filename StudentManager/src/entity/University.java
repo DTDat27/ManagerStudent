@@ -1,10 +1,10 @@
 package entity;
 
 public abstract class University {
-	public String id_class;
-	public String class_name;
-	public String id_department;
-	public String department_name;
+	private String id_class;
+	private String class_name;
+	private String id_department;
+	private String department_name;
 	
 	public String getId_class() {
 		return id_class;
