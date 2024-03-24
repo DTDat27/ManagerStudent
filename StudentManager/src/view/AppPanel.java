@@ -20,4 +20,9 @@ public class AppPanel extends JPanel {
 		
 	}
 
+	@Override
+	public void setBorder(Border emptyBorder) {
+		// TODO Auto-generated method stub
+		super.setBorder(emptyBorder);
+	}
 }

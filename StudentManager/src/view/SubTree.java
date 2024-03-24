@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.List;
 
 import javax.swing.JTree;
@@ -14,7 +16,7 @@ import testDao.Impl.ActivityClassDaoImpl;
 import testDao.Impl.DepartmentDaoImpl;
 
 
-public class SubTree extends JTree{	
+public class SubTree extends JTree implements MouseListener{	
 	/**
 	 * 
 	 */
@@ -41,10 +43,40 @@ public class SubTree extends JTree{
 		return defaultTreeModel;
 	}
 	
-	public SubTree createTree() {
-		SubTree tree = new SubTree();
-        tree.setModel(tree.createTreeModel());
+	public JTree createTree(JTree tree,DefaultTreeModel model) {
+        tree.setModel(model);
         tree.setBounds(10, 133, 213, 609);
+        tree.addTreeSelectionListener(selectionRedirector);
 		return tree;
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println("click lcik");
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

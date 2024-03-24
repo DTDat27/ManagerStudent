@@ -1,6 +1,9 @@
 package view;
 
 import java.awt.EventQueue;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -8,17 +11,17 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
-
+import javax.swing.JTree;
 import javax.swing.border.EmptyBorder;
-
-
+import javax.swing.table.DefaultTableModel;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 public class AppFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private AppPanel contentPane;
-	private InforTable table;
-	private SubTree tree;
+	private JTable table;
+	private JTree tree;
 	private JTextField textField;
 
 	/**
@@ -49,11 +52,34 @@ public class AppFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-        tree = new SubTree();
-        contentPane.add(tree.createTree());   
+        tree = new JTree();
+        SubTree subTree = new SubTree();
+        contentPane.add(subTree.createTree(tree, subTree.createTreeModel()));
 		
-		table = new InforTable();
-		contentPane.add(table.createScrollPaneForTable());
+		table = new TableList();
+		TableList tableList = new TableList();
+		contentPane.add(tableList.createScrollPaneForTableList(table, tableList.createModel()));
+		
+
+//		tree.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+//			    if (selectedNode != null) {
+////			    	table.setModel(null);
+//			        table.setModel(new DefaultTableModel(
+//		        	new Object[][] {
+//		        			{"id", "name", "phone"},
+//		        		},
+//		        	new String[] {
+//		        			"id", "name", "phone"
+//		        		}
+//			        ));
+//			    }
+//			}
+//		});
+		
+		addMouseListener(tableList);
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setBounds(10, 10, 213, 113);
