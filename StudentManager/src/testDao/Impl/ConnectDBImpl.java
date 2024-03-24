@@ -23,7 +23,6 @@ public class ConnectDBImpl implements ConnectDB {
 		try {
 			Class.forName(Constant.CLASS_FN);
 			this.connection = DriverManager.getConnection(Constant.JDBC_URL, Constant.USER_NAME, Constant.PASSWORD);
-			System.out.println("Success connect");
         } catch (ClassNotFoundException | SQLException e) {
         	System.out.println("Lớp BaseRepository -> hàm openConnect lỗi: " + e.getMessage());
         	e.printStackTrace();
@@ -44,7 +43,6 @@ public class ConnectDBImpl implements ConnectDB {
 		try {
 			 if(connection != null && !connection.isClosed()) {
 				 connection.close();
-				 System.out.println("Đã ngắt kết nối đến DB");
 			 }
 		} catch (SQLException e) {
 			System.err.println("Lớp BaseRepository -> hàm closeConnect lỗi: " + e.getMessage());

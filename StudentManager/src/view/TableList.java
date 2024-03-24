@@ -21,10 +21,10 @@ public class TableList extends JTable implements MouseListener{
 	private static final long serialVersionUID = 1L;
 	public StudentDao stu = new StudentDaoImpl();
 
-	public DefaultTableModel createModel() {
+	public DefaultTableModel loadModel() {
         String[] columnNames = {"ID", "Name", "Class","Department","Sexual","Phone","Status"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
-		List<Student> stuList = stu.getListStu();
+		List<Student> stuList = stu.getListStudent();
         for (Student student : stuList) {
             Object[] row = {student.getId(), student.getName(), student.getClass_name(), student.getDepartment_name(),
             				student.getSexual(), student.getPhone(), student.getStatus() };
@@ -33,6 +33,16 @@ public class TableList extends JTable implements MouseListener{
 		return model;
 	}
 	
+	public DefaultTableModel loadModel(String nameClass) {
+        String[] columnNames = {"ID", "Name", "Class","Department","Sexual","Phone","Status"};
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+		List<Student> stuList = stu.getListStudentsEclass(nameClass);
+        for (Student student : stuList) {
+            Object[] row = {student.getId(), student.getName(), student.getPhone()};
+            model.addRow(row);
+        }
+		return model;   
+	}
 //	public DefaultTableModel createModel2 () {
 //		Object[][] data = {
 //	            {"John", "Doe", 30},

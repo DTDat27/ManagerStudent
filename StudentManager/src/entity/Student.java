@@ -2,11 +2,11 @@ package entity;
 
 public class Student extends University {
 	
-	private String id;
-	private String name;
-	private String sexual;
-	private int phone;
-	private String status;
+	public String id;
+	public String name;
+	public String sexual;
+	public int phone;
+	public String status;
 	
 	public String getId() {
 		return id;
